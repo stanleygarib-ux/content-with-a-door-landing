@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Content With A Door - Feature Rich Design</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --dark: #0a0a0a;
+            --dark-secondary: #141414;
+            --light: #ffffff;
+            --gray: #888;
+            --accent: #00d4aa;
+            --accent-glow: rgba(0, 212, 170, 0.3);
+            --border: #222;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--dark);
+            color: var(--light);
+            line-height: 1.6;
+        }
+        
+        h1, h2, h3, h4 {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+        
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(10, 10, 10, 0.9);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .logo {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            background: var(--accent);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            align-items: center;
+        }
+        
+        .nav-links a {
+            color: var(--gray);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: var(--light);
+        }
+        
+        .nav-cta {
+            background: var(--accent);
+            color: var(--dark) !important;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+        }
+        
+        /* Hero */
+        .hero {
+            padding: 160px 0 100px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+        
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--dark-secondary);
+            border: 1px solid var(--border);
+            padding: 8px 16px;
+            border-radius: 100px;
+            font-size: 0.85rem;
+            color: var(--accent);
+            margin-bottom: 30px;
+        }
+        
+        .hero-badge::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: var(--accent);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 24px;
+        }
+        
+        .hero h1 span {
+            color: var(--accent);
+        }
+        
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: var(--gray);
+            margin-bottom: 40px;
+            max-width: 500px;
+        }
+        
+        .hero-ctas {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 40px;
+        }
+        
+        .btn-primary {
+            background: var(--accent);
+            color: var(--dark);
+            padding: 16px 32px;
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: all 0.3s;
+            box-shadow: 0 0 30px var(--accent-glow);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 50px var(--accent-glow);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: var(--light);
+            padding: 16px 32px;
+            font-size: 1rem;
+            font-weight: 500;
+            text-decoration: none;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            transition: all 0.3s;
+        }
+        
+        .btn-secondary:hover {
+            background: var(--dark-secondary);
+            border-color: var(--gray);
+        }
+        
+        .hero-stats {
+            display: flex;
+            gap: 40px;
+        }
+        
+        .stat {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .stat-value {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--accent);
+        }
+        
+        .stat-label {
+            font-size: 0.85rem;
+            color: var(--gray);
+        }
+        
+        .hero-visual {
+            position: relative;
+        }
+        
+        .hero-image {
+            width: 100%;
+            border-radius: 16px;
+            border: 1px solid var(--border);
+        }
+        
+        .floating-card {
+            position: absolute;
+            background: var(--dark-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 16px 20px;
+            font-size: 0.9rem;
+        }
+        
+        .floating-card.top {
+            top: -20px;
+            right: -20px;
+        }
+        
+        .floating-card.bottom {
+            bottom: 20px;
+            left: -30px;
+        }
+        
+        /* Problem Section */
+        .problem {
+            padding: 100px 0;
+            background: var(--dark-secondary);
+        }
+        
+        .section-tag {
+            color: var(--accent);
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 16px;
+        }
+        
+        .problem h2 {
+            font-size: 3rem;
+            margin-bottom: 60px;
+            max-width: 700px;
+        }
+        
+        .problem-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+        
+        .problem-card {
+            background: var(--dark);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 40px;
+            transition: all 0.3s;
+        }
+        
+        .problem-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-5px);
+        }
+        
+        .problem-card.missing {
+            border-color: #ff4757;
+        }
+        
+        .problem-card.solution {
+            border-color: var(--accent);
+            background: linear-gradient(135deg, var(--dark) 0%, rgba(0, 212, 170, 0.1) 100%);
+        }
+        
+        .problem-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--dark-secondary);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .problem-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 12px;
+        }
+        
+        .problem-card p {
+            color: var(--gray);
+            font-size: 0.95rem;
+        }
+        
+        /* Features */
+        .features {
+            padding: 100px 0;
+        }
+        
+        .features-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+        
+        .features-header h2 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+        
+        .features-header p {
+            color: var(--gray);
+            font-size: 1.2rem;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+        }
+        
+        .feature-card {
+            background: var(--dark-secondary);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 40px;
+            transition: all 0.3s;
+        }
+        
+        .feature-card:hover {
+            border-color: var(--accent);
+        }
+        
+        .feature-number {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.9rem;
+            color: var(--accent);
+            margin-bottom: 16px;
+        }
+        
+        .feature-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 12px;
+        }
+        
+        .feature-card p {
+            color: var(--gray);
+        }
+        
+        /* How It Works */
+        .how-it-works {
+            padding: 100px 0;
+            background: var(--dark-secondary);
+        }
+        
+        .how-it-works h2 {
+            text-align: center;
+            font-size: 3rem;
+            margin-bottom: 60px;
+        }
+        
+        .steps {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .step {
+            display: flex;
+            gap: 30px;
+            align-items: flex-start;
+        }
+        
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: var(--accent);
+            color: var(--dark);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+        
+        .step-content h3 {
+            font-size: 1.4rem;
+            margin-bottom: 8px;
+        }
+        
+        .step-content p {
+            color: var(--gray);
+        }
+        
+        /* Prompts */
+        .prompts {
+            padding: 100px 0;
+        }
+        
+        .prompts h2 {
+            text-align: center;
+            font-size: 3rem;
+            margin-bottom: 60px;
+        }
+        
+        .prompts-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+        
+        .prompt-card {
+            background: var(--dark-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+        }
+        
+        .prompt-card code {
+            display: block;
+            background: var(--dark);
+            padding: 16px;
+            border-radius: 8px;
+            font-family: 'Monaco', 'Menlo', monospace;
+            font-size: 0.9rem;
+            color: var(--accent);
+            margin-bottom: 12px;
+        }
+        
+        .prompt-card p {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+        
+        /* Pricing */
+        .pricing {
+            padding: 100px 0;
+            background: var(--dark-secondary);
+        }
+        
+        .pricing-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+        
+        .pricing-text h2 {
+            font-size: 3rem;
+            margin-bottom: 24px;
+        }
+        
+        .pricing-text p {
+            color: var(--gray);
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+        }
+        
+        .pricing-list {
+            list-style: none;
+        }
+        
+        .pricing-list li {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+            color: var(--gray);
+        }
+        
+        .pricing-list li::before {
+            content: '✓';
+            color: var(--accent);
+            font-weight: bold;
+        }
+        
+        .pricing-card {
+            background: var(--dark);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 50px;
+            text-align: center;
+        }
+        
+        .pricing-badge {
+            display: inline-block;
+            background: var(--accent);
+            color: var(--dark);
+            padding: 8px 16px;
+            border-radius: 100px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 30px;
+        }
+        
+        .pricing-original {
+            text-decoration: line-through;
+            color: var(--gray);
+            font-size: 1.5rem;
+        }
+        
+        .pricing-current {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 5rem;
+            font-weight: 700;
+            margin: 10px 0;
+        }
+        
+        .pricing-note {
+            color: var(--gray);
+            margin-bottom: 30px;
+        }
+        
+        .pricing-guarantee {
+            margin-top: 24px;
+            font-size: 0.9rem;
+            color: var(--gray);
+        }
+        
+        /* Footer */
+        footer {
+            padding: 60px 0;
+            text-align: center;
+            border-top: 1px solid var(--border);
+        }
+        
+        footer p {
+            color: var(--gray);
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero-grid {
+                grid-template-columns: 1fr;
+                gap: 60px;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero-ctas {
+                flex-direction: column;
+            }
+            
+            .problem-grid,
+            .features-grid,
+            .prompts-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .pricing-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .pricing-current {
+                font-size: 3.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <div class="nav-content">
+                <div class="logo">
+                    <div class="logo-icon">🚪</div>
+                    Content With A Door
+                </div>
+                <div class="nav-links">
+                    <a href="#problem">Problem</a>
+                    <a href="#features">Features</a>
+                    <a href="#prompts">Prompts</a>
+                    <a href="#pricing" class="nav-cta">Get Access — $27</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-grid">
+                <div class="hero-content">
+                    <div class="hero-badge">Now Available</div>
+                    <h1>Turn Helpful Videos Into <span>Converting</span> Content</h1>
+                    <p class="hero-subtitle">A custom GPT that helps YouTube creators build videos with a clear next step—without turning your channel into a pitch fest.</p>
+                    <div class="hero-ctas">
+                        <a href="#pricing" class="btn-primary">Get Content With A Door</a>
+                        <a href="#features" class="btn-secondary">See Features</a>
+                    </div>
+                    <div class="hero-stats">
+                        <div class="stat">
+                            <span class="stat-value">$27</span>
+                            <span class="stat-label">Launch Price</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-value">72%</span>
+                            <span class="stat-label">Off Regular</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-value">30d</span>
+                            <span class="stat-label">Guarantee</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-visual">
+                    <img src="https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?w=800&q=80" alt="Content Strategy" class="hero-image">
+                    <div class="floating-card top">🎯 Discovery → Trust → Direction</div>
+                    <div class="floating-card bottom">✓ One video. One job. One next step.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problem -->
+    <section class="problem" id="problem">
+        <div class="container">
+            <div class="section-tag">The Problem</div>
+            <h2>Your Videos Are Helpful. So Why Aren't They Converting?</h2>
+            <div class="problem-grid">
+                <div class="problem-card">
+                    <div class="problem-icon">🎯</div>
+                    <h3>Discovery Content</h3>
+                    <p>Brings people in—but they watch and leave without taking action</p>
+                </div>
+                <div class="problem-card">
+                    <div class="problem-icon">🤝</div>
+                    <h3>Trust Content</h3>
+                    <p>Builds credibility—but doesn't move anyone forward</p>
+                </div>
+                <div class="problem-card solution">
+                    <div class="problem-icon">🚪</div>
+                    <h3>Direction Content</h3>
+                    <p>Guides viewers toward the right next step: subscribe, download, or buy</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section class="features" id="features">
+        <div class="container">
+            <div class="features-header">
+                <div class="section-tag">Features</div>
+                <h2>What You Can Create</h2>
+                <p>One video. One job. One next step.</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-number">01</div>
+                    <h3>Hooks & Intros</h3>
+                    <p>Write stronger openings that grab attention without clickbait</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-number">02</div>
+                    <h3>Full Scripts</h3>
+                    <p>Turn rough ideas into polished YouTube scripts</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-number">03</div>
+                    <h3>Titles & Thumbnails</h3>
+                    <p>Create packaging with real click potential</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-number">04</div>
+                    <h3>CTAs That Convert</h3>
+                    <p>Write calls-to-action that feel earned, not forced</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-number">05</div>
+                    <h3>Lead Magnets</h3>
+                    <p>Match the right offer to each video's promise</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-number">06</div>
+                    <h3>Repurpose Content</h3>
+                    <p>Turn one video into Shorts, posts, and promo</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="how-it-works">
+        <div class="container">
+            <div class="section-tag">Method</div>
+            <h2>The Content With A Door Method</h2>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>What the video is about</h3>
+                        <p>Your topic and core message</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3>Who the video is for</h3>
+                        <p>Your target audience</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3>What should happen next</h3>
+                        <p>The door—the next step that matches viewer intent</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Prompts -->
+    <section class="prompts" id="prompts">
+        <div class="container">
+            <div class="section-tag">Prompts</div>
+            <h2>10 Strategic Prompts</h2>
+            <div class="prompts-grid">
+                <div class="prompt-card">
+                    <code>"Write 12 hooks for this YouTube video"</code>
+                    <p>Use when you know the topic but need a stronger opening</p>
+                </div>
+                <div class="prompt-card">
+                    <code>"Turn this outline into a full YouTube script"</code>
+                    <p>Paste rough notes and get a clean, persuasive structure</p>
+                </div>
+                <div class="prompt-card">
+                    <code>"Help me find the right door for this video"</code>
+                    <p>One of the most valuable prompts—improves conversion logic</p>
+                </div>
+                <div class="prompt-card">
+                    <code>"Is this video Discovery, Trust, or Direction?"</code>
+                    <p>Understand the job of your content before you create it</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing -->
+    <section class="pricing" id="pricing">
+        <div class="container">
+            <div class="pricing-content">
+                <div class="pricing-text">
+                    <div class="section-tag">Pricing</div>
+                    <h2>Ready to Make Your Content Lead Somewhere?</h2>
+                    <p>Join creators who are tired of helpful videos that don't create momentum.</p>
+                    <ul class="pricing-list">
+                        <li>Immediate access to the custom GPT</li>
+                        <li>Complete framework built into every interaction</li>
+                        <li>Strategic guidance, not just writing</li>
+                        <li>Use for every video you create</li>
+                        <li>30-day money-back guarantee</li>
+                    </ul>
+                </div>
+                <div class="pricing-card">
+                    <div class="pricing-badge">Launch Deal — Save 72%</div>
+                    <div class="pricing-original">$97</div>
+                    <div class="pricing-current">$27</div>
+                    <p class="pricing-note">One-time purchase. Use forever.</p>
+                    <a href="#" class="btn-primary">Get Access Now</a>
+                    <p class="pricing-guarantee">30-day money-back guarantee</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Content With A Door. Built for creators who want more than views.</p>
+        </div>
+    </footer>
+</body>
+</html>

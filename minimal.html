@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Content With A Door - Minimal Design</title>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #fafafa;
+            --text: #111;
+            --text-secondary: #666;
+            --accent: #ff6b35;
+            --border: #e0e0e0;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'DM Sans', -apple-system, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+        
+        /* Navigation */
+        nav {
+            padding: 24px 0;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+        
+        .nav-cta {
+            background: var(--text);
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        
+        /* Hero */
+        .hero {
+            padding: 100px 0 60px;
+            text-align: center;
+        }
+        
+        .hero-badge {
+            display: inline-block;
+            background: #fff;
+            border: 1px solid var(--border);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-bottom: 30px;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 24px;
+            letter-spacing: -0.02em;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.35rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto 40px;
+        }
+        
+        .hero-cta {
+            display: inline-flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .btn-primary {
+            background: var(--accent);
+            color: white;
+            padding: 18px 48px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: transform 0.2s;
+        }
+        
+        .btn-primary:hover {
+            transform: scale(1.02);
+        }
+        
+        .price-note {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+        
+        .price-note strong {
+            color: var(--text);
+        }
+        
+        /* Problem Statement */
+        .problem {
+            padding: 80px 0;
+            border-top: 1px solid var(--border);
+        }
+        
+        .problem-text {
+            font-size: 1.5rem;
+            line-height: 1.7;
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .problem-text strong {
+            color: var(--accent);
+        }
+        
+        /* The Gap */
+        .gap {
+            padding: 60px 0;
+            background: white;
+        }
+        
+        .gap-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            text-align: center;
+        }
+        
+        .gap-item h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+        
+        .gap-item p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+        
+        .gap-arrow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: var(--border);
+        }
+        
+        /* Solution */
+        .solution {
+            padding: 100px 0;
+            border-top: 1px solid var(--border);
+        }
+        
+        .solution-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .solution-header h2 {
+            font-size: 2.5rem;
+            margin-bottom: 16px;
+        }
+        
+        .solution-header p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+        }
+        
+        .door-concept {
+            background: white;
+            border: 2px solid var(--border);
+            border-radius: 16px;
+            padding: 60px;
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .door-concept h3 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+        
+        .door-concept p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        
+        /* Features List */
+        .features-list {
+            display: grid;
+            gap: 20px;
+        }
+        
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+            padding: 24px;
+            background: white;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+        }
+        
+        .feature-check {
+            width: 24px;
+            height: 24px;
+            background: var(--accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 0.8rem;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+        
+        .feature-content h4 {
+            font-size: 1.1rem;
+            margin-bottom: 4px;
+        }
+        
+        .feature-content p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+        
+        /* Testimonial */
+        .testimonial {
+            padding: 100px 0;
+            background: white;
+            text-align: center;
+        }
+        
+        .testimonial blockquote {
+            font-size: 1.75rem;
+            font-weight: 500;
+            line-height: 1.5;
+            max-width: 800px;
+            margin: 0 auto 40px;
+        }
+        
+        .testimonial-author {
+            color: var(--text-secondary);
+        }
+        
+        /* Pricing */
+        .pricing {
+            padding: 100px 0;
+            text-align: center;
+            border-top: 1px solid var(--border);
+        }
+        
+        .pricing h2 {
+            font-size: 2rem;
+            margin-bottom: 40px;
+        }
+        
+        .price-card {
+            background: white;
+            border: 2px solid var(--border);
+            border-radius: 20px;
+            padding: 60px;
+            max-width: 450px;
+            margin: 0 auto;
+        }
+        
+        .price-label {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 16px;
+        }
+        
+        .price-old {
+            text-decoration: line-through;
+            color: var(--text-secondary);
+            font-size: 1.25rem;
+        }
+        
+        .price-new {
+            font-size: 4rem;
+            font-weight: 700;
+            margin: 10px 0;
+        }
+        
+        .price-desc {
+            color: var(--text-secondary);
+            margin-bottom: 30px;
+        }
+        
+        .guarantee {
+            margin-top: 24px;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+        
+        /* Footer */
+        footer {
+            padding: 40px 0;
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            border-top: 1px solid var(--border);
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .gap-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            
+            .gap-arrow {
+                transform: rotate(90deg);
+            }
+            
+            .door-concept {
+                padding: 40px 24px;
+            }
+            
+            .price-new {
+                font-size: 3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <div class="nav-content">
+                <div class="logo">Content With A Door</div>
+                <a href="#pricing" class="nav-cta">Get Access — $27</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-badge">Custom GPT for YouTube Creators</div>
+            <h1>Stop Posting Helpful Videos That Quietly Train People to Leave</h1>
+            <p class="hero-subtitle">A YouTube strategy GPT that helps you create content with a clear next step—turning views into subscribers, leads, and sales.</p>
+            <div class="hero-cta">
+                <a href="#pricing" class="btn-primary">Get Content With A Door</a>
+                <p class="price-note"><strong>$27</strong> Launch Price (Reg. $97) — 30-Day Guarantee</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problem -->
+    <section class="problem">
+        <div class="container">
+            <p class="problem-text">You post useful videos. You explain things clearly. You even get comments telling you how helpful your content is. And still walk away wondering why <strong>none of it converts</strong>.</p>
+        </div>
+    </section>
+
+    <!-- The Gap -->
+    <section class="gap">
+        <div class="container">
+            <div class="gap-grid">
+                <div class="gap-item">
+                    <h3>Discovery</h3>
+                    <p>Brings people in—but they watch and leave</p>
+                </div>
+                <div class="gap-arrow">→</div>
+                <div class="gap-item">
+                    <h3>Trust</h3>
+                    <p>Builds credibility—but doesn't move anyone forward</p>
+                </div>
+                <div class="gap-arrow">→</div>
+                <div class="gap-item">
+                    <h3>Direction</h3>
+                    <p>Guides viewers to the next step</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solution -->
+    <section class="solution">
+        <div class="container">
+            <div class="solution-header">
+                <h2>The Missing Piece</h2>
+                <p>Most creators stay stuck in Discovery and Trust. They never create enough Direction.</p>
+            </div>
+            
+            <div class="door-concept">
+                <h3>Does this video have a door?</h3>
+                <p>A door is the next step that matches what the viewer naturally wants after watching. If you taught a framework, the door helps them apply it.</p>
+            </div>
+            
+            <div class="features-list">
+                <div class="feature-item">
+                    <div class="feature-check">✓</div>
+                    <div class="feature-content">
+                        <h4>Write hooks and scripts</h4>
+                        <p>Stronger openings and full YouTube scripts that grab attention</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-check">✓</div>
+                    <div class="feature-content">
+                        <h4>Create titles and thumbnails</h4>
+                        <p>Packaging with real click potential—no misleading clickbait</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-check">✓</div>
+                    <div class="feature-content">
+                        <h4>Match lead magnets</h4>
+                        <p>The right offer for each video's promise</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-check">✓</div>
+                    <div class="feature-content">
+                        <h4>Repurpose content</h4>
+                        <p>Turn one video into Shorts, community posts, and promo</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonial -->
+    <section class="testimonial">
+        <div class="container">
+            <blockquote>"Helpful content builds trust, but without a clear next step, it quietly trains people to leave."</blockquote>
+            <p class="testimonial-author">The Content With A Door Framework</p>
+        </div>
+    </section>
+
+    <!-- Pricing -->
+    <section class="pricing" id="pricing">
+        <div class="container">
+            <h2>Ready to make your content lead somewhere?</h2>
+            <div class="price-card">
+                <div class="price-label">Launch Deal</div>
+                <div class="price-old">$97</div>
+                <div class="price-new">$27</div>
+                <p class="price-desc">One-time purchase. Use forever.</p>
+                <a href="#" class="btn-primary">Get Access Now</a>
+                <p class="guarantee">30-day money-back guarantee</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Content With A Door. Built for creators who want more than views.</p>
+        </div>
+    </footer>
+</body>
+</html>
